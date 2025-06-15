@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="navbar">
+    <button class="menu-btn">☰</button>
+    <h1>Dashboard</h1>
+    <div class="profile-section">
+      <span>Hi, Charz</span>
+      <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Profile" class="profile-icon">
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="os-card" data-os="ubuntu">
+      <img src="https://assets.ubuntu.com/v1/29985a98-ubuntu-logo32.png" alt="Ubuntu">
+      <p>Ubuntu 22</p>
+    </div>
+    <div class="os-card" data-os="kali">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Kali-dragon-icon.svg" alt="Kali Linux">
+      <p>Kali Linux</p>
+    </div>
+    <div class="os-card" data-os="fedora">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Fedora_logo.svg" alt="Fedora XFCE">
+      <p>Fedora XFCE</p>
+    </div>
+    <div class="os-card" data-os="debian">
+      <img src="https://www.debian.org/Pics/openlogo-50.png" alt="Debian XFCE" />
+      <p>Debian XFCE</p>
+    </div>
+  </div>
+
+  <div id="terminal" style="height: 400px; width: 100%; background: black; color: white; margin-top: 30px; border-radius: 8px;"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/dashboard.js"></script>
+
+  <!-- Chatbot Button -->
+  <div class="chatbot-fab" id="chatbot-toggle">💬</div>
+</body>
+</html>
