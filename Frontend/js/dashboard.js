@@ -1,3 +1,15 @@
+// dashboard.js
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+import { app } from './firebase-config.js'; // or wherever you initialized Firebase
+
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    // Not logged in, redirect to login
+    window.location.href = "login.html";
+  }
+});
 document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".os-card");
     const chatbotToggle = document.getElementById("chatbot-toggle");
@@ -21,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Chatbot not yet loaded!");
       }
     });
+    
   
     // (Optional) Sidebar toggle
     const menuBtn = document.querySelector(".menu-btn");
