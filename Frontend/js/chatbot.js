@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function appendMessage(sender, message) {
     const bubble = document.createElement("div");
     bubble.className = sender === "You" ? "chat-msg user" : "chat-msg bot";
-    bubble.innerHTML = <strong>${sender}:</strong> ${message};
+    bubble.innerHTML = <strong>${sender}:</strong>${message};
     chatLog.appendChild(bubble);
     chatLog.scrollTop = chatLog.scrollHeight;
     }
