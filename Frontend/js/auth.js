@@ -21,7 +21,7 @@ form.addEventListener("submit", (e) => {
       });
 
       alert("Signup successful!");
-      window.location.href = "dashboard.html"; // redirect on login
+      window.location.href = "LandingP.html"; // redirect on login
     })
     .catch((error) => {
         // Only attempt login if it's a "user already exists" type of error
@@ -29,7 +29,7 @@ form.addEventListener("submit", (e) => {
           signInWithEmailAndPassword(auth, email, password)
             .then(() => {
               alert("Login successful!");
-              window.location.href = "dashboard.html";
+              window.location.href = "LandingP.html";
             })
             .catch((err) => {
               alert(`Login failed: ${err.message}`);
