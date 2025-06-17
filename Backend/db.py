@@ -1,17 +1,15 @@
-import sqlite3
-from flask import g
+"""
+Simple SQLite setup using SQLAlchemy
+"""
+from flask_sqlalchemy import SQLAlchemy
 
-DATABASE = 'virtual_lab.db'
+db = SQLAlchemy()
 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-        db.row_factory = sqlite3.Row
-    return db
+def init_db(app):
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///virtual_lab.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    db.init_app(app)
 
-def init_db():
-    db = sqlite3.connect(DATABASE)
-    db.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)')
-    db.commit()
-    db.close()
+    with app.app_context():
+        from models import User, VMInstance  # noqa
+        db.create_all()

@@ -1,18 +1,20 @@
+#!/usr/bin/env python3
+"""
+Endpoint to launch VM scripts and return VNC URL
+"""
 from flask import Blueprint, request, jsonify
-import subprocess, uuid
+from utils.vm_manager import start_vm
 
-terminal_bp = Blueprint('terminal', __name__)
+terminal_bp = Blueprint("terminal", __name__)
 
-@terminal_bp.route('/start-terminal')
-def start_terminal():
-    os_type = request.args.get('os')
-    session_id = str(uuid.uuid4())
+@terminal_bp.route("/launch", methods=["POST"])
+def launch_vm():
+    data = request.get_json(silent=True) or {}
+    os_type = data.get("os", "ubuntu").lower()
 
-    # You can dynamically switch logic here (e.g., different docker run images)
-    if os_type == 'ubuntu':
-        subprocess.Popen(["bash", "scripts/start_ubuntu.sh", session_id])
-    elif os_type == 'fedora':
-        subprocess.Popen(["bash", "scripts/start_fedora.sh", session_id])
-    # Add others...
-
-    return jsonify({"session_id": session_id})
+    try:
+        port = start_vm(os_type)
+        novnc_url = f"http://<YOUR-SERVER-IP>:{port}/vnc.html"
+        return jsonify({"status": "starting", "os": os_type, "port": port, "url": novnc_url})
+    except FileNotFoundError as e:
+        return jsonify({"error": str(e)}), 400
