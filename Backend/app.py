@@ -1,26 +1,35 @@
-#!usr/bin/env python3
+#!/usr/bin/env python3
+"""
+Main Flask entry‑point
+"""
 from flask import Flask
 from flask_cors import CORS
 from db import init_db
-from auth import auth_bp
+from terminal import terminal_bp
 from chatbot import chatbot_bp
-from terminal import terminals_bp
+from dashboard import dashboard_bp  # optional JSON helpers
 
-def create_app():
+def create_app() -> Flask:
     app = Flask(__name__)
-    
-    app.config['SECRET_KEY'] = 'supersecretkey'
-    
-    CORS(app)
-    
+    app.config["SECRET_KEY"] = "CHANGE_ME_IN_PROD"
+    CORS(app)                # allow frontend ↔ backend
+
+    # Database (SQLite for now)
     init_db(app)
-    
-    app.register_blueprint(auth_bp, url_prefix="/auth")
-    app.register_blueprint(chatbot_bp, url_prefix="/chatbot")
-    app.register_blueprint(terminals_bp, url_prefix="/terminal")
-    
+
+    # Blueprints
+    app.register_blueprint(terminal_bp, url_prefix="/api/terminal")
+    app.register_blueprint(chatbot_bp,  url_prefix="/api/chatbot")
+    app.register_blueprint(dashboard_bp, url_prefix="/api/dashboard")
+
     return app
 
+app = create_app()
+
+@app.route('/')
+def index():
+    return "Backend server is running"
+
+
 if __name__ == "__main__":
-    app = create_app()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)

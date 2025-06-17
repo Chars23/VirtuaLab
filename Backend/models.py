@@ -1,25 +1,16 @@
-# backend/models.py
-
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.ext.declarative import declarative_base
+from db import db
 from datetime import datetime
 
-Base = declarative_base()
+class User(db.Model):
+    id       = db.Column(db.Integer, primary_key=True)
+    uid      = db.Column(db.String(120), unique=True)  # Firebase UID
+    email    = db.Column(db.String(180))
+    created  = db.Column(db.DateTime, default=datetime.utcnow)
 
-class User(Base):
-    __tablename__ = 'users'
-
-    id = Column(Integer, primary_key=True)
-    username = Column(String, unique=True, nullable=False)
-    password = Column(String, nullable=False)
-    email = Column(String, unique=True, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-
-class Session(Base):
-    __tablename__ = 'sessions'
-
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, nullable=False)
-    vm_id = Column(String, nullable=True)
-    os_type = Column(String, nullable=True)
-    started_at = Column(DateTime, default=datetime.utcnow)
+class VMInstance(db.Model):
+    id        = db.Column(db.Integer, primary_key=True)
+    user_id   = db.Column(db.Integer, db.ForeignKey("user.id"))
+    os_type   = db.Column(db.String(50))        # ubuntu / fedora / kali / debian
+    status    = db.Column(db.String(20))        # running / stopped
+    port      = db.Column(db.Integer)           # VNC / noVNC port
+    started   = db.Column(db.DateTime, default=datetime.utcnow)
