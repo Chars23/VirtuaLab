@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - VirtuaLab</title>
+    <link rel="stylesheet" href="/Frontend/css/settings.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="back-button" onclick="location.href='LandingP.html'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+            </div>
+            <h1 class="page-title">Settings</h1>
+        </div>
+        
+        <div class="settings-content">
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="profile-name-edit">
+                    <span>Sathvika M</span>
+                    <button class="edit-btn" onclick="editName()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <form class="settings-form" id="settingsForm">
+                <div class="form-section">
+                    <label for="email">Email</label>
+                    <div class="input-group">
+                        <input type="email" id="email" value="sathvikam@gmail.com" readonly>
+                        <button type="button" class="edit-btn" onclick="editField('email')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="phone-section">
+                        <button type="button" class="edit-btn phone-edit" onclick="editField('phone')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <div class="phone-display">
+                            <label>Phone No.</label>
+                            <span class="phone-number">9632389911</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <label for="profession">Profession</label>
+                    <div class="input-group">
+                        <input type="text" id="profession" value="Student" readonly>
+                        <button type="button" class="edit-btn" onclick="editField('profession')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="password-section">
+                        <button type="button" class="edit-btn password-edit" onclick="editField('password')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </button>
+                        <div class="password-display">
+                            <label>Password</label>
+                            <span class="password-masked">*************</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">Save Changes</button>
+                    <button type="button" class="cancel-btn" onclick="location.href='LandingP.html'">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/Frontend/js/settings.js"></script>
+</body>
+</html>
